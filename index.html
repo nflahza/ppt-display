@@ -1,63 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anti-Cheat Detection</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>No Hover Text</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-        }
-        .warning {
-            display: none;
-            color: red;
-            font-size: 20px;
-            font-weight: bold;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 20%;
+      }
+      .no-hover {
+        pointer-events: none;
+        user-select: none;
+        color: black;
+        font-size: 24px;
+      }
     </style>
-</head>
-<body>
-    <h1>Exam Page</h1>
-    <p>Stay focused on this page during the test.</p>
-    <p class="warning" id="warning">Warning: Suspicious Activity Detected!</p>
-
-    <script>
-        let inactiveTime = 0;
-        let active = true;
-        const warningMessage = document.getElementById("warning");
-
-        // Detect tab switch or minimize
-        document.addEventListener("visibilitychange", () => {
-            if (document.hidden) {
-                warningMessage.style.display = "block";
-                console.warn("User switched tabs or minimized the window.");
-            } else {
-                warningMessage.style.display = "none";
-            }
-        });
-
-        // Detect inactivity (no mouse or keyboard interaction for 10s)
-        function resetTimer() {
-            inactiveTime = 0;
-            if (!active) {
-                active = true;
-                warningMessage.style.display = "none";
-            }
-        }
-        
-        setInterval(() => {
-            inactiveTime++;
-            if (inactiveTime > 10) {
-                warningMessage.style.display = "block";
-                console.warn("User is inactive for too long.");
-                active = false;
-            }
-        }, 1000);
-
-        document.addEventListener("mousemove", resetTimer);
-        document.addEventListener("keydown", resetTimer);
-    </script>
-</body>
+  </head>
+  <body>
+    <div class="no-hover">This text cannot be hovered or selected.</div>
+  </body>
 </html>
